@@ -1,5 +1,4 @@
 #include <database.h>
-#include <stdio.h>
 
 int	create_row(char *table, char *keys, char *values)
 {
