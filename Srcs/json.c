@@ -1,14 +1,15 @@
 #include <json.h>
 
 //	@brief	Returns the length of the json's key or value
-static int	attr_len(char *json_attr)
+static int    attr_len(char *json_attr)
 {
-	int	index;
+    int    index;
 
-	index = 0;
-	while (json_attr[index] != '"' && json_attr[index])
-		index++;
-	return (index);
+    index = 0;
+    while (json_attr[index] != '"' && json_attr[index] && json_attr[index] != '}'\
+    && json_attr[index] != ',' && json_attr[index] != ' ' )
+        index++;
+    return (index);
 }
 
 //	@brief	Given a json string on the format "key": "value" the key is returned

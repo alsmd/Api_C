@@ -12,7 +12,7 @@ enum e_http_errors
 	NOT_HTTP_MESSAGE = -10,
 	HTTP_BAD_REQUEST = 400,
 	HTTP_INTERNAL_ERROR = 500,
-	HTTP_CREATED = 202
+	HTTP_CREATED = 201
 };
 
 //Router

@@ -1,62 +1,61 @@
-# Processo Seletivo 42 São Paulo: 42Labs 2ª edição
+<h1>Labs 42</h1>
 
-Nesse desafio você vai construir duas aplicações utilizando C: uma [API](#) e
-uma aplicação de interface de linha de comando([CLI](#)).
+<h2>How to start server</h2>
 
-## API
+<ul>
+  <li>make db</li>
+  <li>make run</li>
+</ul>
 
-![Cliente e API REST se comunicando por Requests e
-Responses](./img/01_client_api.png)
+<h2>Routes Availables</h2>
+<br>
+<ul>
+  <li>GET /pokemon</li>
+  <ul>
+    <li>Returns a json object with all pokemons stored on database</li>
+  </ul>
+  <br>
+  <li>POST /pokemon</li>
+  <ul>
+    <li>Create a new pokemon into the database</li>
+    <li>Receive a json object inside the body of the request</li>
+    <li>The json object must have the proprieties name and type</li>
+  </ul>
+  <br>
+  <li>GET /pokemon/${id}</li>
+  <ul>
+    <li>Returns a json object with the pokemon of ${id}</li>
+  </ul>
+  <br>
+  <li>PUT /pokemon/${id}</li>
+  <ul>
+    <li>Update the pokemon of ${id}</li>
+    <li>Receive a json object inside the body of the request</li>
+    <li>Name and Type are the proprieties that can be change</li>
+  </ul>
+  <br>
+  <li>DELETE /pokemon/${id}</li>
+  <ul>
+    <li>Delete the pokemon of ${id}</li>
+  </ul>
+</ul>
 
-A API que você irá construir poderá lidar com dados com formato e origem de sua
-escolha. Um exemplo seria fazer uma API que retorna o conteúdo de postagens de
-um blog.
+<hr>
 
-É necessário:
-
-- Que sua API esteja de acordo com o modelo de arquitetura _REST_
-- Implementar pelo menos uma requisição do método `GET` no path `/`, retornando
-  alguma informação no formato JSON e status HTTP `200 OK`
-- Registrar logs em um arquivo; guardando informações sobre todas as requisições
-  e respostas(e.g. horário da requisição, método, etc.)
-  
-## Aplicação CLI
-
-![Exemplo CLI](./img/02_cli_example.png)
-
-A aplicação CLI que você irá construir deverá consumir e processar o arquivo de
-logs gerado pela API REST. 
-
-É necessário:
-
-- Que sua aplicação agrupe os dados dos logs e os mostrem de maneira legível no terminal
-- Que os dados possibilitem uma análise sobre as requisições
-
-## O que será avaliado
-
-- Código bem escrito e limpo
-- A documentação do seu código
-- Quais ferramentas foram usadas e por quê
-- Sua criatividade e capacidade de lidar com problemas diferentes
-- Se seu projeto está alinhado com o que foi proposto
-
-## O mínimo necessário
-
-- README.md com documentação contendo informações do projeto.
-
-## Bônus
-
-Os seguintes itens não são obrigatórios, porém dão mais valor ao seu trabalho.
-Os destacados são mais significativos para nós.
-
-- **Testes**
-- **Conteinerização das aplicações**
-- **API com conexão a um banco de dados(SQL ou NoSQL, sua escolha)**
-- **Parseamento de argumentos UNIX-like, podendo filtrar ou alterar comportamentos da aplicação(CLI)**
-- Cache básico(caso sua API se comunique com banco de dados)
-- Autenticação e autorização(API)
-- Lidar com requests simultâneos(API)
-- Cuidados especiais com otimização, padrões, entre outros
-- Pipelines de CI/CD
-- Utilização de algum serviço de computação na nuvem
-- Uso de ferramentas externas para diagramação e/ou planejamento das etapas de desenvolvimento
+<h2>Tools Used</h2>
+<br>
+<ul>
+  <li><a href="https://whimsical.com/fluxograma-UMDgypwLJykZyjAaKEtaSw">Whimsical</a> to make a fluxograma</li>
+  <br>
+  <img src=".//img/api.png" alt="">
+  <br>
+  <br>
+  <li><a href="https://celebro-company.monday.com/boards/2325319253">Monday</a> to make a list of things that I have to do on the project</li>
+  <br>
+  <img src=".//img/api_2.png" alt="">
+  <br>
+  <br>
+  <li><a href="#">Notion</a> Node to organize subjects that I have to study</li>
+  <br>
+  <img src=".//img/api_3.png" alt="">
+</ul>

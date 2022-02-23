@@ -15,5 +15,9 @@
 */
 void	convert_json_to_object(const char *json_obj, int qnt_prop, ...);
 
-
+typedef struct s_car
+{
+	char	*name;
+	char	*price;
+} t_car;
 #endif
