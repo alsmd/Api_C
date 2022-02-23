@@ -22,5 +22,7 @@ void	router(struct mg_connection *c, struct mg_http_message *request);
 void	show_pokemons(struct mg_connection *c, struct mg_http_message *request);
 void	show_pokemon(struct mg_connection *c, struct mg_http_message *request);
 void	store_pokemon(struct mg_connection *c, struct mg_http_message *request);
+void	update_pokemon(struct mg_connection *c, struct mg_http_message *request);
+void	remove_pokemon(struct mg_connection *c, struct mg_http_message *request);
 
 #endif

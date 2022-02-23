@@ -3,6 +3,7 @@
 		"database.h": "c",
 		"random": "c",
 		"api.h": "c",
-		"mongoose.h": "c"
+		"mongoose.h": "c",
+		"utils.h": "c"
 	}
 }

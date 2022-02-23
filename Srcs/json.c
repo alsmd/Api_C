@@ -14,7 +14,7 @@ static int	attr_len(char *json_attr)
 //	@brief	Given a json string on the format "key": "value" the key is returned
 static char	*get_key(char *json)
 {
-	while (*json == ' ' || *json == '"')
+	while (*json == ' ' || *json == '"' || *json == '{')
 		json++;
 	return (strndup(json, attr_len(json)));
 }
@@ -41,21 +41,24 @@ void	convert_json_to_object(const char *json_obj, int qnt_prop, ...)
 
 	va_start(ptr, qnt_prop);
 	va_copy(tmp, ptr);
-	json_obj += 1;
 	argv = split(json_obj, ',');
-	while (*argv)
+	index = 0;
+	while (argv[index])
 	{
-		index = 0;
-		while (index < qnt_prop)
+		for (int j = 0; j < qnt_prop; j++)
 		{
 			key = va_arg(ptr, char *);
 			value = va_arg(ptr, char **);
-			if (!strcmp(key, get_key(*argv)))
-				*value = get_value(*argv);
-			index++;
+			char	*current_key = get_key(argv[index]);
+			if (!strcmp(key, current_key))
+			{
+				*value = get_value(argv[index]);
+			}
+			free(current_key);
 		}
 		va_copy(ptr, tmp);
-		argv++;
+		index++;
 	}
 	va_end(ptr);
+	free_matriz(argv);
 }

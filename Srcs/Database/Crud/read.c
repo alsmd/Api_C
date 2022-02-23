@@ -6,8 +6,10 @@ static char	*get_properties(MYSQL_ROW row, int num_fields, char *fields)
 	int		first;
 	char	*buffer;
 	char	**keys;
+	char	**tmp;
 
 	keys = split(fields, ',');
+	tmp = keys;
 	buffer = strdup("");
 	first = 1;
 	for(int i = 0; i < num_fields; i++)
@@ -28,6 +30,7 @@ static char	*get_properties(MYSQL_ROW row, int num_fields, char *fields)
 		keys += 1;
 		first = 0;
 	}
+	free(tmp);
 	return (buffer);
 }
 
@@ -74,6 +77,7 @@ char	*read_row(char *table, char *fields,  char *statement)
 	if (status)
 	{
 		printf("Error:: %s \n", mysql_error(con));
+		free(result);
 		return (NULL);
 	}
 	mysql_close(con);

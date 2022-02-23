@@ -11,6 +11,10 @@ int	delete_row(char *table, char *statement)
 	sprintf(query, "DELETE FROM %s WHERE %s", table, statement);
 	status = mysql_query(con, query);
 	if (status)
+	{
 		printf("Error:: %s \n", mysql_error(con));
+		return (1);
+	}
 	mysql_close(con);
+	return (0);
 }

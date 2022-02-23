@@ -13,15 +13,15 @@ DATABASE =	$(DATABASE_DIR)Crud/create.c $(DATABASE_DIR)Crud/read.c $(DATABASE_DI
 
 LIB_DIR = ./Srcs/Lib/
 
-LIB = $(LIB_DIR)/mongoose.c
+LIB = $(LIB_DIR)mongoose.c
 
 ROUTER_DIR = ./Srcs/Router/
 
-ROUTER = $(ROUTER_DIR)/router.c
+ROUTER = $(ROUTER_DIR)router.c
 
 UTILS_DIR = ./Srcs/Utils/
 
-UTILS = $(UTILS_DIR)/split.c $(UTILS_DIR)/strjoin.c
+UTILS = $(UTILS_DIR)split.c $(UTILS_DIR)strjoin.c $(UTILS_DIR)free_matriz.c
 
 #All Files
 SRCS = ./Srcs/main.c ./Srcs/json.c $(CONTROLLERS) $(DATABASE) $(LIB) $(ROUTER) $(UTILS)

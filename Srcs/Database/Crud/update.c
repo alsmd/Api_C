@@ -11,6 +11,10 @@ int	update_row(char *table, char *new_attrs, char *statement)
 	sprintf(query, "UPDATE %s SET %s WHERE %s", table, new_attrs, statement);
 	status = mysql_query(con, query);
 	if (status)
+	{
 		printf("Error:: %s \n", mysql_error(con));
+		return (1);
+	}
 	mysql_close(con);
+	return (0);
 }
