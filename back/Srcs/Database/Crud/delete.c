@@ -1,6 +1,6 @@
 #include <database.h>
 
-int	create_row(char *table, char *keys, char *values)
+int	delete_row(char *table, char *statement)
 {
 	MYSQL	*con;
 	char	query[4080];
@@ -8,13 +8,9 @@ int	create_row(char *table, char *keys, char *values)
 
 	con = 0;
 	init_con(&con);
-	sprintf(query, "INSERT INTO %s (%s) VALUES (%s)", table, keys, values);
+	sprintf(query, "DELETE FROM %s WHERE %s", table, statement);
 	status = mysql_query(con, query);
 	if (status)
-	{
 		printf("Error:: %s \n", mysql_error(con));
-		return (1);
-	}
 	mysql_close(con);
-	return (0);
 }
