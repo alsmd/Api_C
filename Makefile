@@ -2,44 +2,44 @@ NAME = server
 
 # Files Separeted by directory
 
-CONTROLLER_DIR = ./Srcs/Controllers/
+CONTROLLER_DIR = ./Src/Controller/
 
 CONTROLLERS = $(CONTROLLER_DIR)PokemonController.c
 
-MODULE_DIR = ./Srcs/Module/
+MODULE_DIR = ./Src/Module/
 
 MODULE = $(MODULE_DIR)create.c $(MODULE_DIR)read.c $(MODULE_DIR)update.c $(MODULE_DIR)delete.c
 
-DATABASE_DIR = ./Srcs/Database/
+DATABASE_DIR = ./Src/Database/
 
 DATABASE = $(DATABASE_DIR)con.c $(DATABASE_DIR)create_database.c $(DATABASE_DIR)sed_database.c
 
-LIB_DIR = ./Srcs/Lib/
+LIB_DIR = ./Src/Lib/
 
 LIB = $(LIB_DIR)mongoose.c
 
-ROUTER_DIR = ./Srcs/Router/
+ROUTER_DIR = ./Src/Router/
 
 ROUTER = $(ROUTER_DIR)router.c
 
-UTILS_DIR = ./Srcs/Utils/
+UTILS_DIR = ./Src/Util/
 
 UTILS = $(UTILS_DIR)split.c $(UTILS_DIR)strjoin.c $(UTILS_DIR)free_matriz.c
 
 #All Files
-SRCS = ./Srcs/main.c ./Srcs/json.c $(CONTROLLERS) $(MODULE) $(DATABASE) $(LIB) $(ROUTER) $(UTILS)
+SRC = ./Src/main.c ./Src/json.c $(CONTROLLERS) $(MODULE) $(DATABASE) $(LIB) $(ROUTER) $(UTILS)
 
-DB_SRCS = $(DATABASE_DIR)/main.c $(DATABASE) $(UTILS)
+DB_SRC = $(DATABASE_DIR)/main.c $(DATABASE) $(UTILS)
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRC:.c=.o)
 
-DB_OBJS = $(DB_SRCS:.c=.o)
+DB_OBJS = $(DB_SRC:.c=.o)
 
 CC = gcc
 
 CFLAGS = 
 
-HEADER = ./Includes -I/usr/local/mysql/include
+HEADER = ./Include -I/usr/local/mysql/include
 
 MYSQL_LIB = -L/usr/local/mysql/lib -lmysqlclient
 
