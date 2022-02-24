@@ -6,10 +6,13 @@ CONTROLLER_DIR = ./Srcs/Controllers/
 
 CONTROLLERS = $(CONTROLLER_DIR)PokemonController.c
 
+MODULE_DIR = ./Srcs/Module/
+
+MODULE = $(MODULE_DIR)create.c $(MODULE_DIR)read.c $(MODULE_DIR)update.c $(MODULE_DIR)delete.c
+
 DATABASE_DIR = ./Srcs/Database/
 
-DATABASE =	$(DATABASE_DIR)Crud/create.c $(DATABASE_DIR)Crud/read.c $(DATABASE_DIR)Crud/update.c $(DATABASE_DIR)Crud/delete.c \
-			$(DATABASE_DIR)con.c $(DATABASE_DIR)create_database.c $(DATABASE_DIR)sed_database.c
+DATABASE = $(DATABASE_DIR)con.c $(DATABASE_DIR)create_database.c $(DATABASE_DIR)sed_database.c
 
 LIB_DIR = ./Srcs/Lib/
 
@@ -24,7 +27,7 @@ UTILS_DIR = ./Srcs/Utils/
 UTILS = $(UTILS_DIR)split.c $(UTILS_DIR)strjoin.c $(UTILS_DIR)free_matriz.c
 
 #All Files
-SRCS = ./Srcs/main.c ./Srcs/json.c $(CONTROLLERS) $(DATABASE) $(LIB) $(ROUTER) $(UTILS)
+SRCS = ./Srcs/main.c ./Srcs/json.c $(CONTROLLERS) $(MODULE) $(DATABASE) $(LIB) $(ROUTER) $(UTILS)
 
 DB_SRCS = $(DATABASE_DIR)/main.c $(DATABASE) $(UTILS)
 
