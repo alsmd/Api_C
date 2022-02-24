@@ -5,6 +5,16 @@
 		"api.h": "c",
 		"mongoose.h": "c",
 		"utils.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"js_lib.h": "c",
+		"strings.h": "c",
+		"string.h": "c",
+		"array": "c",
+		"deque": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"vector": "c",
+		"string_view": "c",
+		"initializer_list": "c"
 	}
 }
