@@ -3,7 +3,7 @@
 #include <mongoose.h>
 #include <database.h>
 #include <json.h>
-
+#include <js_lib.h>
 
 enum e_http_errors
 {

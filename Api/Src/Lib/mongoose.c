@@ -1343,7 +1343,7 @@ static const char *mg_http_status_code_str(int status_code) {
 }
 // clang-format on
 
-void mg_http_reply(struct mg_connection *c, int code, const char *headers,
+int mg_http_reply(struct mg_connection *c, int code, const char *headers,
                    const char *fmt, ...) {
   char mem[256], *buf = mem;
   va_list ap;
@@ -1355,6 +1355,7 @@ void mg_http_reply(struct mg_connection *c, int code, const char *headers,
             mg_http_status_code_str(code), headers == NULL ? "" : headers, len);
   mg_send(c, buf, len > 0 ? len : 0);
   if (buf != mem) free(buf);
+  return (code);
 }
 
 static void http_cb(struct mg_connection *, int, void *, void *);

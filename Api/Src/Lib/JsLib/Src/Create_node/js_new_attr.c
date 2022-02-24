@@ -30,6 +30,7 @@ char	*store_by_type(js_node *obj, char *json)
 	else if (!strncmp(json, "null", 4))
 	{
 		obj->type = JSON_NULL;
+		obj->string_value = strdup("");
 		json += 4;
 	}
 	else if (is_number(*json))

@@ -15,6 +15,10 @@
 		"unordered_map": "c",
 		"vector": "c",
 		"string_view": "c",
-		"initializer_list": "c"
+		"initializer_list": "c",
+		"*.tcc": "c",
+		"limits": "c",
+		"type_traits": "c",
+		"stdlib.h": "c"
 	}
 }

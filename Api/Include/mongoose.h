@@ -930,7 +930,7 @@ void mg_http_serve_dir(struct mg_connection *, struct mg_http_message *hm,
                        struct mg_http_serve_opts *opts);
 void mg_http_serve_file(struct mg_connection *, struct mg_http_message *hm,
                         const char *path, struct mg_http_serve_opts *opts);
-void mg_http_reply(struct mg_connection *, int status_code, const char *headers,
+int mg_http_reply(struct mg_connection *, int status_code, const char *headers,
                    const char *body_fmt, ...);
 struct mg_str *mg_http_get_header(struct mg_http_message *, const char *name);
 int mg_http_get_var(const struct mg_str *, const char *name, char *, size_t);
