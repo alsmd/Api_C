@@ -4,6 +4,7 @@
 		"random": "c",
 		"api.h": "c",
 		"mongoose.h": "c",
-		"utils.h": "c"
+		"utils.h": "c",
+		"stdio.h": "c"
 	}
 }
