@@ -35,16 +35,17 @@ void	print_element(js_node *item)
 {
 	int	r;
 
-	if (item->type == JSON_STRING)
+	r = printf("%s:", item->key ? item->key : "Null");
+	while (r <= 30)
 	{
-		r = printf("%s:", item->key ? item->key : "Null");
-		while (r <= 30)
-		{
-			printf(" ");
-			r++;
-		}
-		printf("%s\n", item->string_value);
+		printf(" ");
+		r++;
 	}
+	if (item->type == JSON_STRING)
+		printf("%s\n", item->string_value);
+	else if (item->type == JSON_INTEGER)
+		printf("%d\n", item->int_value);
+
 }
 
 void	render_item(void)
@@ -53,6 +54,8 @@ void	render_item(void)
 
 	item = sys.active_log;
 	clean_term();
+	printf("\t\t%sRequest Information:%s\n", CYAN_LIGHT, RESET);
+	printf("_______________________________________________________________\n\n");
 	js_foreach_node(item->obj, print_element);
 	printf("\n\n");
 }

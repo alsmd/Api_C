@@ -40,6 +40,8 @@ void	table_events(int cmd)
 
 void	check_event(int cmd)
 {
+	if (!strcmp(sys.screen, "table"))
+		table_events(cmd);
 	if (cmd == 10) //ENTER
 	{
 		sys.active_log = get_active_log();
@@ -54,8 +56,6 @@ void	check_event(int cmd)
 			system("clear");
 		}
 	}
-	else if (!strcmp(sys.screen, "table"))
-		table_events(cmd);
 	if (cmd == ' ')
 	{
 		if (helper == 0)
