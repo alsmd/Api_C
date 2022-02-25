@@ -6,8 +6,9 @@ extern int		helper;
 
 void	render()
 {
+	clean_term();
 	if (!strcmp(sys.screen, "table"))
-		print_table();
+		render_table();
 	else if (!strcmp(sys.screen, "item"))
-		print_item();
+		render_item();
 }

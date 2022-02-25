@@ -8,6 +8,9 @@
 #include <js_lib.h>
 #include <colors.h>
 #include <termios.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <pthread.h>
 
 typedef struct s_log
 {
@@ -51,7 +54,8 @@ void	header();
 //Front
 void	fill(int r, int size);
 void	render();
-void	print_item(void);
-void	print_table(void);
+void	render_item(void);
+void	render_table(void);
+void    clean_term(void);
 
 #endif

@@ -43,14 +43,18 @@ char	*js_new_array_attr(char *json, js_node *obj);
 char	*js_new_obj(char *json, js_node *obj);
 char	*js_new_array(char *json, js_node *obj);
 char	*js_new_string(char *json);
+char	*js_clean_array(js_node *obj);
+char	*js_clean_obj(js_node *obj);
+
 /***************
  * 
  * 	SEARCH NODES
  * 
 ****************/
 
-js_node	*js_get_value(js_node *obj, char *key);
+js_node		*js_get_value(js_node *obj, char *key);
 void		js_foreach(js_node *array, void (*func)(js_node *item));
+void		js_foreach_node(js_node *obj, void (*func)(js_node *item));
 
 
 /***************

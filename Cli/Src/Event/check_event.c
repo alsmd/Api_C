@@ -26,18 +26,8 @@ int	check_last()
 	return (1);
 }
 
-void	check_event(int cmd)
+void	table_events(int cmd)
 {
-	if (cmd == 10) //ENTER
-	{
-		sys.active_log = get_active_log();
-		sys.screen = "item";		
-	}
-	if (cmd == 127)
-	{
-		if (strcmp(sys.screen, "table"))
-			sys.screen = "table";
-	}
 	if ((cmd == 65 || cmd == 'w') && sys.desloc > 0 && sys.cursor == 0)
 		sys.desloc -= 1;
 	else if ((cmd == 65 || cmd == 'w') && sys.cursor > 0)
@@ -46,6 +36,26 @@ void	check_event(int cmd)
 		sys.desloc += 1;
 	else if ((cmd == 66 || cmd == 's') && sys.cursor < sys.item_per_table - 1)
 		sys.cursor += 1;
+}
+
+void	check_event(int cmd)
+{
+	if (cmd == 10) //ENTER
+	{
+		sys.active_log = get_active_log();
+		system("clear");
+		sys.screen = "item";		
+	}
+	else if (cmd == 127)
+	{
+		if (strcmp(sys.screen, "table"))
+		{
+			sys.screen = "table";
+			system("clear");
+		}
+	}
+	else if (!strcmp(sys.screen, "table"))
+		table_events(cmd);
 	if (cmd == ' ')
 	{
 		if (helper == 0)

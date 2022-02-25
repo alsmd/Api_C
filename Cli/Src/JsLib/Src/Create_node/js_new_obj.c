@@ -34,3 +34,20 @@ char	*js_new_obj(char *json, js_node *obj)
 	json++;
 	return (json);
 }
+
+char	*js_clean_obj(js_node *obj)
+{
+	js_node	*tmp;
+	while (obj)
+	{
+		if (obj->type == JSON_STRING)
+			free(obj->string_value);
+		if (obj->type == JSON_ARRAY)
+			js_clean_array(obj->array_value);
+		if (obj->type == JSON_OBJ)
+			js_clean_obj(obj->obj_value);
+		tmp = obj;
+		obj = obj->next;
+		free(tmp);
+	}
+}

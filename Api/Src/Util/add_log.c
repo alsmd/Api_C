@@ -52,9 +52,17 @@ void    print_header(const char *header, FILE *file_log)
 			remove_char(key_value[0], '\n');
 			remove_char(key_value[0], 13);
 			change_char(key_value[0], '"', '\'');
+			change_char(key_value[0], '{', '\'');
+			change_char(key_value[0], '}', '\'');
+			change_char(key_value[0], ':', '\'');
+			change_char(key_value[0], ',', '\'');
 			remove_char(key_value[1], '\n');
 			remove_char(key_value[1], 13);
 			change_char(key_value[1], '"', '\'');
+			change_char(key_value[1], '{', '\'');
+			change_char(key_value[1], '}', '\'');
+			change_char(key_value[1], ':', '\'');
+			change_char(key_value[1], ',', '\'');
 			fprintf(file_log, "\"%s\": \"%s\", ", key_value[0] ? key_value[0] : "null", key_value[1] ? key_value[1] : "null");
 			free_matriz(key_value);
 		}

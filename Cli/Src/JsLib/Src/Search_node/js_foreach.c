@@ -16,3 +16,20 @@ void	js_foreach(js_node *array, void (*func)(js_node *item))
 		begin = begin->next;
 	}
 }
+
+/*
+	@brief		execute func in each node of the obj chain
+*/
+void	js_foreach_node(js_node *obj, void (*func)(js_node *item))
+{
+	while (obj)
+	{
+		if (obj->type == JSON_OBJ)
+			js_foreach_node(obj->obj_value, func);
+		else if (obj->type == JSON_ARRAY)
+			js_foreach_node(obj->array_value, func);
+		else
+			func(obj);
+		obj = obj->next;
+	}
+}

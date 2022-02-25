@@ -16,5 +16,6 @@ int	main(void)
 	
 	js_new_array("[1, 2, \"Hello there!\", 4, true, false]", &obj);
 	js_foreach(&obj, printf_array_items);
+	free(obj.array_value);
 	return (0);
 }
