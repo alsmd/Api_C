@@ -1,7 +1,7 @@
 #include <cli.h>
 
 extern t_log	*logs;
-extern t_size	sizes;
+extern t_sys	sys;
 
 void	init_log(t_log *log, char *buffer)
 {
@@ -20,7 +20,7 @@ void	add_node(char *buffer)
 	t_log	*begin;
 
 	new_log = calloc(1, sizeof(t_log));
-	sizes.nodes += 1;
+	sys.nodes += 1;
 	init_log(new_log, buffer);
 	begin = logs;
 	if (logs == 0)
@@ -40,12 +40,12 @@ void	set_sizes()
 	begin = logs;
 	while (begin)
 	{
-		if (strlen(begin->method) > sizes.method)
-			sizes.method = strlen(begin->method);
-		if (strlen(begin->time) > sizes.time)
-			sizes.time = strlen(begin->time);
-		if (strlen(begin->uri) > sizes.uri)
-			sizes.uri = strlen(begin->uri);
+		if (strlen(begin->method) > sys.method)
+			sys.method = strlen(begin->method);
+		if (strlen(begin->time) > sys.time)
+			sys.time = strlen(begin->time);
+		if (strlen(begin->uri) > sys.uri)
+			sys.uri = strlen(begin->uri);
 		begin = begin->next;
 	}
 }

@@ -61,7 +61,7 @@ static char	*get_json_result(MYSQL *con, char *fields)
 	char	*buffer;
 	int		*types;
 	first[0] = 1;
-	buffer = strdup("{");
+	buffer = strdup("[");
 	MYSQL_RES *result = mysql_store_result(con);
 	int num_fields = mysql_num_fields(result);
 	types = get_types(result, num_fields);
@@ -75,7 +75,7 @@ static char	*get_json_result(MYSQL *con, char *fields)
 		first[0] = 0;
 		buffer = strjoin(buffer, "}");
 	}
-	buffer = strjoin(buffer, "}");
+	buffer = strjoin(buffer, "]");
 	mysql_free_result(result);
 	return (buffer);
 }

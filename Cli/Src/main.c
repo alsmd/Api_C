@@ -1,7 +1,7 @@
 #include <cli.h>
 
 t_log	*logs = 0;
-t_size	sizes;
+t_sys	sys;
 int		helper = 0;
 
 void    clean_term(void)
@@ -11,12 +11,12 @@ void    clean_term(void)
 
 int	get_qnt_page()
 {
-	int	nodes = sizes.nodes;
+	int	nodes = sys.nodes;
 	int	qnt = 1;
 	
-	while (nodes > sizes.item_per_table)
+	while (nodes > sys.item_per_table)
 	{
-		nodes -= sizes.item_per_table;
+		nodes -= sys.item_per_table;
 		qnt++;
 	}
 	return (qnt);
@@ -34,23 +34,28 @@ int	main(void)
 {
 	int		cmd;
 
-	bzero(&sizes, sizeof(t_size));
+	bzero(&sys, sizeof(t_sys));
 	create_nodes();
-	sizes.item_per_table = 6;
-	sizes.cur_page = 1;
-	sizes.desloc = 1;
-	sizes.qnt_page = get_qnt_page();
+	sys.item_per_table = 6;
+	sys.cur_page = 1;
+	sys.desloc = 1;
+	sys.default_color = WHITE;
+	sys.qnt_page = get_qnt_page();
 	while (1)
 	{
 		clean_term();
 		print_table();
 		write(1, "[space] to open/close helper.\n", 31);
 		if (helper)
+		{   
+			for (int i = 0; i < 27; i++)
+				printf(" ");
+			printf("%s%s\n", WHITE, "↓");
 			print_helper();
-		write(1, "[cmd]: ", 8);
+		}
 		cmd = getch();
 		printf("%d\n", cmd);
-		execute_action(cmd);
+		check_event(cmd);
 		clean_term();
 	}
 	return (0);

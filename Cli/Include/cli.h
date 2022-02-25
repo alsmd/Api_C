@@ -18,24 +18,31 @@ typedef struct s_log
 	struct s_log	*next;
 }	t_log;
 
-typedef struct s_size
+typedef struct s_sys
 {
-	int	method;
-	int	uri;
-	int	time;
-	int	nodes;
-	int	qnt_page;
-	int	cur_page;
-	int	item_per_table;
-	int	desloc;
-}	t_size;
+	int		method;
+	int		uri;
+	int		time;
+	int		nodes;
+	int		qnt_page;
+	int		cur_page;
+	int		item_per_table;
+	int		desloc;
+	int		cursor;
+	char	*default_color;
+}	t_sys;
 
 void	add_node(char *buffer);
-void	set_sizes();
+void	set_size();
 void	create_nodes();
 void	print_table(void);
 void	fill(int r, int size);
-void	execute_action(int cmd);
+void	check_event(int cmd);
 int		getch(void);
+t_log	*get_page();
+
+//Components
+void	item(t_log *item);
+void	header();
 
 #endif

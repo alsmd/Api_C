@@ -4,12 +4,24 @@ NAME = cli
 
 SRC_DIR = ./Src/
 
+EVENT_DIR = $(SRC_DIR)Event/
+
+FRONT_DIR = $(SRC_DIR)Frontend/
+
+SYS_DIR = $(SRC_DIR)Sys/
+
+SYS = $(SYS_DIR)get_page.c
+
+EVENT = $(EVENT_DIR)check_event.c
+
+FRONT = $(FRONT_DIR)components.c $(FRONT_DIR)print_table.c
+
 JS_LIB_DIR = $(SRC_DIR)JsLib/
 
 JS_NAME = libjs.a
 
 #All Files
-SRC = $(SRC_DIR)main.c $(SRC_DIR)table.c $(SRC_DIR)node.c $(SRC_DIR)getch.c
+SRC = $(SRC_DIR)main.c $(SRC_DIR)node.c $(SRC_DIR)getch.c $(EVENT) $(FRONT) $(SYS)
 
 
 OBJS = $(SRC:.c=.o)
