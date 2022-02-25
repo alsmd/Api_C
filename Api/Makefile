@@ -31,7 +31,7 @@ UTILS_DIR = ./Src/Util/
 UTILS = $(UTILS_DIR)split.c $(UTILS_DIR)strjoin.c $(UTILS_DIR)free_matriz.c $(UTILS_DIR)add_log.c
 
 #All Files
-SRC = ./Src/main.c ./Src/json.c $(CONTROLLERS) $(MODULE) $(DATABASE) $(LIB) $(ROUTER) $(UTILS)
+SRC = ./Src/main.c $(CONTROLLERS) $(MODULE) $(DATABASE) $(LIB) $(ROUTER) $(UTILS)
 
 DB_SRC = $(DATABASE_DIR)/main.c $(DATABASE) $(UTILS)
 

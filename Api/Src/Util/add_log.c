@@ -86,6 +86,7 @@ void    add_log(char *method, char *route, int status, const char *header)
 		str_time = strdup(ctime(&curtime));
 		str_time[strlen(str_time) - 1] = '\0';
 		fprintf(file_log, "\"time\": \"%s\", ", str_time);
+		free(str_time);
 		print_header(header, file_log);
 		fprintf(file_log, "\"status\": %d", status);
 		fprintf(file_log, "}\n");
