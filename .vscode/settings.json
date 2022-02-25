@@ -19,6 +19,9 @@
 		"*.tcc": "c",
 		"limits": "c",
 		"type_traits": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"cli.h": "c",
+		"termios.h": "c",
+		"unistd.h": "c"
 	}
 }

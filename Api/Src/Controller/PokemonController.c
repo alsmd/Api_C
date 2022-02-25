@@ -103,7 +103,7 @@ void	update_pokemon(struct mg_connection *c, struct mg_http_message *request)
 		status = mg_http_reply(c, HTTP_OK, "", "{\"status:\":\"%d\"}", HTTP_OK);
 	char	uri[255];
 	sprintf(uri, "/pokemon/%d", id);
-	add_log("GET", uri, status);
+	add_log("PUT", uri, status);
 }
 
 void	remove_pokemon(struct mg_connection *c, struct mg_http_message *request)
@@ -120,5 +120,5 @@ void	remove_pokemon(struct mg_connection *c, struct mg_http_message *request)
 		status = mg_http_reply(c, HTTP_OK, "", "{\"status:\":\"%d}", HTTP_OK);
 	char	uri[255];
 	sprintf(uri, "/pokemon/%d", id);
-	add_log("GET", uri, status);
+	add_log("DELETE", uri, status);
 }
