@@ -12,7 +12,7 @@ SYS_DIR = $(SRC_DIR)Sys/
 
 SYS = $(SYS_DIR)get_page.c $(SYS_DIR)run.c
 
-EVENT = $(EVENT_DIR)update_event.c  $(EVENT_DIR)update.c
+EVENT = $(EVENT_DIR)update.c $(EVENT_DIR)events.c
 
 FRONT = $(FRONT_DIR)components.c $(FRONT_DIR)render_item.c $(FRONT_DIR)render.c $(FRONT_DIR)render_helper.c
 
@@ -28,7 +28,7 @@ OBJS = $(SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS = -pthread
+CFLAGS = -g
 
 HEADER = ./Include -I/usr/local/mysql/include -I$(JS_LIB_DIR)Include
 

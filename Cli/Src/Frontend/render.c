@@ -9,9 +9,11 @@ void	render()
 	
 	clean_term();
 	if (!strcmp(sys.screen, "table"))
-		render_table();
-	else if (!strcmp(sys.screen, "item"))
+		render_table(logs, OFF, ON, ON, ON, OFF, OFF);
+	else if (!strcmp(sys.screen, "table_item"))
 		render_item();
+	else if (!strcmp(sys.screen, "table_uri"))
+		render_table(sys.selected_uri , ON, OFF, ON, ON, ON, ON);
 	write(1, "[space] to open/close helper.\n", 31);
 	if (helper)
 	{   

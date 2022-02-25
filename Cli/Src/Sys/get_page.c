@@ -4,14 +4,14 @@ extern t_log	*logs;
 extern t_sys	sys;
 
 //	@brief	Desloc logs and returs the item
-t_log	*get_page()
+t_log	*get_page(t_log *log)
 {
 	int		index;
 	t_log	*begin;
 
-	begin = logs;
+	begin = log;
 	index = 0;
-	while (index < sys.desloc)
+	while (index < sys.desloc && begin)
 	{
 		begin = begin->next;
 		index++;
@@ -20,12 +20,12 @@ t_log	*get_page()
 }
 
 //	@brief	Get active log
-t_log	*get_active_log()
+t_log	*get_active_log(t_log *log)
 {
 	int		index;
 	t_log	*begin;
 
-	begin = get_page();
+	begin = get_page(log);
 	index = 0;
 	while (begin && index < sys.item_per_table)
 	{

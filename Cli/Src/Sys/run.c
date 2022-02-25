@@ -6,5 +6,6 @@ void	run()
 	{
 		render();
 		update();
+		usleep(150);
 	}
 }

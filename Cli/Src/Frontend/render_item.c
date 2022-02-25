@@ -4,14 +4,14 @@ extern t_log	*logs;
 extern t_sys	sys;
 extern int		helper;
 
-void	render_table(void)
+void	render_table(t_log *log, int id, int total_request, int method, int uri, int status, int time)
 {
 	int		r;
 	int		index;
 	t_log	*begin;
 
-	header();
-	begin = get_page();
+	header(id, total_request, method, uri, status, time);
+	begin = get_page(log);
 	index = 0;
 	while (begin && index < sys.item_per_table)
 	{
@@ -19,7 +19,7 @@ void	render_table(void)
 			sys.default_color = RED;
 		else
 			sys.default_color = WHITE;
-		item(begin);
+		item(begin, id, total_request, method, uri, status, time);
 		begin = begin->next;
 		index++;
 	}
