@@ -38,7 +38,7 @@ void	table_events(int cmd)
 		sys.cursor += 1;
 }
 
-void	check_event(int cmd)
+void	update_event(int cmd)
 {
 	if (!strcmp(sys.screen, "table"))
 		table_events(cmd);

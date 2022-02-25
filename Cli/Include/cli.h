@@ -14,6 +14,7 @@
 
 typedef struct s_log
 {
+	int				id;
 	char			*method;
 	char			*uri;
 	char			*time;
@@ -41,12 +42,13 @@ typedef struct s_sys
 void	add_node(char *buffer);
 void	set_size();
 void	create_nodes();
-void	check_event(int cmd);
+void	update_event(int cmd);
 int		getch(void);
 
 //Sys
 t_log	*get_page();
 t_log	*get_active_log();
+void	run();
 
 //Components
 void	item(t_log *item);
@@ -57,5 +59,9 @@ void	render();
 void	render_item(void);
 void	render_table(void);
 void    clean_term(void);
+void	render_helper();
+void    clean_term(void);
+//Event
+void	update();
 
 #endif

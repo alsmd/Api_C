@@ -10,11 +10,11 @@ FRONT_DIR = $(SRC_DIR)Frontend/
 
 SYS_DIR = $(SRC_DIR)Sys/
 
-SYS = $(SYS_DIR)get_page.c
+SYS = $(SYS_DIR)get_page.c $(SYS_DIR)run.c
 
-EVENT = $(EVENT_DIR)check_event.c
+EVENT = $(EVENT_DIR)update_event.c  $(EVENT_DIR)update.c
 
-FRONT = $(FRONT_DIR)components.c $(FRONT_DIR)print_table.c $(FRONT_DIR)render.c
+FRONT = $(FRONT_DIR)components.c $(FRONT_DIR)render_item.c $(FRONT_DIR)render.c $(FRONT_DIR)render_helper.c
 
 JS_LIB_DIR = $(SRC_DIR)JsLib/
 

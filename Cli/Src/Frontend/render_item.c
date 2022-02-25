@@ -56,6 +56,7 @@ void	render_item(void)
 	clean_term();
 	printf("\t\t%sRequest Information:%s\n", CYAN_LIGHT, RESET);
 	printf("_______________________________________________________________\n\n");
+	printf("id:                           %d\n", item->id);
 	js_foreach_node(item->obj, print_element);
 	printf("\n\n");
 }

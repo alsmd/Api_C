@@ -2,12 +2,14 @@
 
 extern t_log	*logs;
 extern t_sys	sys;
+int				id_available;
 
 void	init_log(t_log *log, char *buffer)
 {
 	js_node	obj;
 
 	js_new_obj(buffer, &obj);
+	log->id = id_available;
 	log->method = js_get_value(obj.obj_value, "method")->string_value;
 	log->uri = js_get_value(obj.obj_value, "uri")->string_value;
 	log->time = js_get_value(obj.obj_value, "time")->string_value;
@@ -59,7 +61,10 @@ void	create_nodes()
 	if (log)
 	{
 		while (fgets(buffer, 2048, log))
+		{
 			add_node(buffer);
+			id_available += 1;
+		}
 	}
 	set_sizes();
 }

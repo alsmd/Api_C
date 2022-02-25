@@ -19,6 +19,7 @@ t_log	*get_page()
 	return (begin);
 }
 
+//	@brief	Get active log
 t_log	*get_active_log()
 {
 	int		index;
