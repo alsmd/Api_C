@@ -28,7 +28,7 @@ OBJS = $(SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS = -g
+CFLAGS = -g -Wall -Werror -Wextra
 
 HEADER = ./Include -I/usr/local/mysql/include -I$(JS_LIB_DIR)Include
 

@@ -45,6 +45,8 @@ char	*js_clean_array(js_node *obj)
 			js_clean_array(obj->array_value);
 		if (obj->type == JSON_OBJ)
 			js_clean_obj(obj->obj_value);
+		if (obj->key)
+			free(obj->key);
 		tmp = obj;
 		obj = obj->next;
 		free(tmp);

@@ -23,5 +23,8 @@ void	update()
 			helper = 0;
 	}
 	if (cmd == 'q')
+	{
+		free_system();
 		exit(0);
+	}
 }

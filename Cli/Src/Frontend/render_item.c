@@ -4,13 +4,12 @@ extern t_log	*logs;
 extern t_sys	sys;
 extern int		helper;
 
-void	render_table(t_log *log, int id, int total_request, int method, int uri, int status, int time)
+void	render_table(t_log *log, char *title, int id, int total_request, int method, int uri, int status, int time)
 {
-	int		r;
 	int		index;
 	t_log	*begin;
 
-	header(id, total_request, method, uri, status, time);
+	header(title, id, total_request, method, uri, status, time);
 	begin = get_page(log);
 	index = 0;
 	while (begin && index < sys.item_per_table)

@@ -13,11 +13,11 @@ void	fill(int r, int size)
 	}
 }
 
-void	header(int id, int total_request, int method, int uri, int status, int time)
+void	header(char *title, int id, int total_request, int method, int uri, int status, int time)
 {
 	int	r;
 
-	printf("\t\t\t\tLog Table\n\n");
+	printf("\t\t\t\t%s\n\n", title);
 	if (id)
 	{
 		r = printf("| %sid%s", CYAN, RESET) - strlen(CYAN) - strlen(RESET);
@@ -81,7 +81,7 @@ void	item(t_log *item, int id, int total_request, int method, int uri, int statu
 		fill(r, 10);
 	}
 	if (time)
-		printf("| %s%s%s  ", sys.default_color, item->time, RESET) - strlen(sys.default_color) - strlen(RESET);
+		printf("| %s%s%s  ", sys.default_color, item->time, RESET);
 	printf("|\n");
 }
 

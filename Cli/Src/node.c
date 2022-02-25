@@ -14,6 +14,7 @@ t_log	*copy(t_log *l, js_node *obj)
 	cpy->time = l->time;
 	cpy->status = l->status;
 	cpy->obj = obj;
+	return (cpy);
 }
 
 void	init_log(t_log *log, char *buffer)
@@ -99,5 +100,6 @@ void	create_nodes()
 			id_available += 1;
 		}
 	}
+	fclose(log);
 	set_sizes();
 }

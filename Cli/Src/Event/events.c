@@ -3,6 +3,7 @@
 extern t_log	*logs;
 extern t_sys	sys;
 extern int		helper;
+t_sys			previous;
 
 //	@brief	Check if there is more content to be display in the table
 int	check_last(t_log *log)
@@ -26,6 +27,21 @@ int	check_last(t_log *log)
 	return (1);
 }
 
+int	items_in_view(t_log *log)
+{
+	t_log	*begin;
+	int		index;
+
+	index = 0;
+	begin = get_page(log);
+	while (begin)
+	{
+		index++;
+		begin = begin->next;
+	}
+	return (index);
+}
+
 void	move_events(int cmd, t_log *log)
 {
 	if ((cmd == 65 || cmd == 'w') && sys.desloc > 0 && sys.cursor == 0)
@@ -34,16 +50,17 @@ void	move_events(int cmd, t_log *log)
 		sys.cursor -= 1;
 	if ((cmd == 66 || cmd == 's') && check_last(log) && sys.cursor == sys.item_per_table - 1)
 		sys.desloc += 1;
-	else if ((cmd == 66 || cmd == 's') && sys.cursor < sys.item_per_table - 1)
+	else if ((cmd == 66 || cmd == 's') && sys.cursor < items_in_view(log) - 1)
 		sys.cursor += 1;
 }
 
 void	table_events(int cmd, t_log *log)
 {
 	move_events(cmd, log);
-	if (cmd == 10)
+	if (cmd == 10) //Enter
 	{
 		sys.selected_uri = get_active_log(logs)->same_request;
+		previous = sys;
 		reset_sys();
 		system("clear");
 		sys.screen = "table_uri";
@@ -54,15 +71,16 @@ void	table_uri_events(int cmd, t_log *log)
 {
 
 	move_events(cmd, log);
-	if (cmd == 10)
+	if (cmd == 10) //ENTER
 	{
 		sys.active_log = get_active_log(sys.selected_uri);
 		system("clear");
 		sys.screen = "table_item";
 	}
-	if (cmd == 127)
+	if (cmd == 127) //Backspace
 	{
 		system("clear");
+		sys = previous;
 		sys.screen = "table";
 	}
 }
