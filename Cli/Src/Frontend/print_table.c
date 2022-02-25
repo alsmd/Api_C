@@ -30,3 +30,14 @@ void	print_table(void)
 	}
 	printf("\n");
 }
+
+void	print_item(void)
+{
+	t_log	*item;
+
+	item = sys.active_log;
+	if (js_get_value(item->obj, "Host"))
+		printf("%s\n", js_get_value(item->obj, "Host")->string_value);
+	printf("%s\n", item->uri);
+	printf("\n");
+}

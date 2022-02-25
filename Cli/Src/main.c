@@ -40,11 +40,12 @@ int	main(void)
 	sys.cur_page = 1;
 	sys.desloc = 1;
 	sys.default_color = WHITE;
+	sys.screen = "table";
 	sys.qnt_page = get_qnt_page();
 	while (1)
 	{
 		clean_term();
-		print_table();
+		render();
 		write(1, "[space] to open/close helper.\n", 31);
 		if (helper)
 		{   
@@ -54,7 +55,6 @@ int	main(void)
 			print_helper();
 		}
 		cmd = getch();
-		printf("%d\n", cmd);
 		check_event(cmd);
 		clean_term();
 	}

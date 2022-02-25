@@ -13,7 +13,7 @@ void	show_pokemons(struct mg_connection *c, struct mg_http_message *request)
 		status = mg_http_reply(c, HTTP_OK, "", "%s", json_response);
 		free(json_response);
 	}
-	add_log("GET", "/pokemon", status);
+	add_log("GET", "/pokemon", status, request->head.ptr);
 }
 
 void	show_pokemon(struct mg_connection *c, struct mg_http_message *request)
@@ -35,7 +35,7 @@ void	show_pokemon(struct mg_connection *c, struct mg_http_message *request)
 	}
 	char	uri[255];
 	sprintf(uri, "/pokemon/%d", id);
-	add_log("GET", uri, status);
+	add_log("GET", uri, status, request->head.ptr);
 }
 
 void	store_pokemon(struct mg_connection *c, struct mg_http_message *request)
@@ -61,7 +61,7 @@ void	store_pokemon(struct mg_connection *c, struct mg_http_message *request)
 		else
 			status = mg_http_reply(c, HTTP_CREATED, "", "{\"status:\":\"%d\"}", HTTP_CREATED);
 	}
-	add_log("POST", "/pokemon", status);
+	add_log("POST", "/pokemon", status, request->head.ptr);
 }
 
 void	get_new_attrs(js_node *poke, char *new_attrs)
@@ -103,7 +103,7 @@ void	update_pokemon(struct mg_connection *c, struct mg_http_message *request)
 		status = mg_http_reply(c, HTTP_OK, "", "{\"status:\":\"%d\"}", HTTP_OK);
 	char	uri[255];
 	sprintf(uri, "/pokemon/%d", id);
-	add_log("PUT", uri, status);
+	add_log("PUT", uri, status, request->head.ptr);
 }
 
 void	remove_pokemon(struct mg_connection *c, struct mg_http_message *request)
@@ -120,5 +120,5 @@ void	remove_pokemon(struct mg_connection *c, struct mg_http_message *request)
 		status = mg_http_reply(c, HTTP_OK, "", "{\"status:\":\"%d}", HTTP_OK);
 	char	uri[255];
 	sprintf(uri, "/pokemon/%d", id);
-	add_log("DELETE", uri, status);
+	add_log("DELETE", uri, status, request->head.ptr);
 }

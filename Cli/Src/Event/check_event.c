@@ -28,6 +28,16 @@ int	check_last()
 
 void	check_event(int cmd)
 {
+	if (cmd == 10) //ENTER
+	{
+		sys.active_log = get_active_log();
+		sys.screen = "item";		
+	}
+	if (cmd == 127)
+	{
+		if (strcmp(sys.screen, "table"))
+			sys.screen = "table";
+	}
 	if ((cmd == 65 || cmd == 'w') && sys.desloc > 0 && sys.cursor == 0)
 		sys.desloc -= 1;
 	else if ((cmd == 65 || cmd == 'w') && sys.cursor > 0)

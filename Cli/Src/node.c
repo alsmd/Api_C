@@ -12,6 +12,7 @@ void	init_log(t_log *log, char *buffer)
 	log->uri = js_get_value(obj.obj_value, "uri")->string_value;
 	log->time = js_get_value(obj.obj_value, "time")->string_value;
 	log->status = js_get_value(obj.obj_value, "status")->int_value;
+	log->obj = obj.obj_value;
 }
 
 void	add_node(char *buffer)

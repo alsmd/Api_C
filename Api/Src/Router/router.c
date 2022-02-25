@@ -2,7 +2,6 @@
 
 void	router(struct mg_connection *c, struct mg_http_message *request)
 {
-	
 	if (mg_http_match_uri(request, "/pokemon") && !strncmp(request->method.ptr, "GET", 3))
 		show_pokemons(c, request);
 	else if (mg_http_match_uri(request, "/pokemon/*") && !strncmp(request->method.ptr, "GET", 3))
@@ -18,7 +17,7 @@ void	router(struct mg_connection *c, struct mg_http_message *request)
 		mg_http_reply(c, HTTP_NOT_FOUND, "", "{\"status\":\"%d\"}", HTTP_NOT_FOUND);
 
         char **matrix = split((char *)request->method.ptr, ' ');
-        add_log(matrix[0], matrix[1], 404);
+        add_log(matrix[0], matrix[1], 404, request->head.ptr);
         free_matriz(matrix);
 	}
 }

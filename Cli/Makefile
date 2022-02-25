@@ -14,7 +14,7 @@ SYS = $(SYS_DIR)get_page.c
 
 EVENT = $(EVENT_DIR)check_event.c
 
-FRONT = $(FRONT_DIR)components.c $(FRONT_DIR)print_table.c
+FRONT = $(FRONT_DIR)components.c $(FRONT_DIR)print_table.c $(FRONT_DIR)render.c
 
 JS_LIB_DIR = $(SRC_DIR)JsLib/
 

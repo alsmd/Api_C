@@ -18,3 +18,20 @@ t_log	*get_page()
 	}
 	return (begin);
 }
+
+t_log	*get_active_log()
+{
+	int		index;
+	t_log	*begin;
+
+	begin = get_page();
+	index = 0;
+	while (begin && index < sys.item_per_table)
+	{
+		if (index == sys.cursor)
+			return (begin);
+		index++;
+		begin = begin->next;
+	}
+	return (0);
+}
