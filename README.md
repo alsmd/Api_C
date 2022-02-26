@@ -1,61 +1,240 @@
-<h1>Labs 42</h1>
+<h1> <strong>Rest Api in C</string></h1>
 
-<h2>How to start server</h2>
+> Docker used for Contanization
 
-<ul>
-  <li>make db</li>
-  <li>make run</li>
-</ul>
+[![@latest](https://img.shields.io/static/v1?label=Docker&message=Contanization&color=blue)](https://www.docker.com/)
 
-<h2>Routes Availables</h2>
 <br>
-<ul>
-  <li>GET /pokemon</li>
-  <ul>
-    <li>Returns a json object with all pokemons stored on database</li>
-  </ul>
-  <br>
-  <li>POST /pokemon</li>
-  <ul>
-    <li>Create a new pokemon into the database</li>
-    <li>Receive a json object inside the body of the request</li>
-    <li>The json object must have the proprieties name and type</li>
-  </ul>
-  <br>
-  <li>GET /pokemon/${id}</li>
-  <ul>
-    <li>Returns a json object with the pokemon of ${id}</li>
-  </ul>
-  <br>
-  <li>PUT /pokemon/${id}</li>
-  <ul>
-    <li>Update the pokemon of ${id}</li>
-    <li>Receive a json object inside the body of the request</li>
-    <li>Name and Type are the proprieties that can be change</li>
-  </ul>
-  <br>
-  <li>DELETE /pokemon/${id}</li>
-  <ul>
-    <li>Delete the pokemon of ${id}</li>
-  </ul>
-</ul>
+
+<h2> <strong> Contents </strong> </h2>
+
+* [About](#about)
+* [Http Routes](#routes)
+* [Tools](#tools)
+* [Docker](#docker)
+* [Simple Commands](#simple)
+* [Fluxogramas](#flux)
+* [Documentation](#doc)
+* [Collaborators](#collab)
+
+<br>
+<h2 id = "about"><strong>About</strong></h2>
+<hr>
+
+This is a one week project where the objective is to create a Rest Api and a Cli using C and any supplemental library. This challange is an opportunity to take the first step towards the job market with [42](https://42.fr/en/network-42/).
+
+<br>
+<h2  id = "routes"><strong>HTTP Routes</strong></h2>
+<table width="80%">
+  <tr>
+    <th>Method</th>
+    <th>Uri</th>
+  </tr>
+  <tr>
+    <td>/</td>
+    <td>GET</td>
+  </tr>
+  <tr>
+    <td>/pokemon</td>
+    <td>GET</td>
+  </tr>
+  <tr>
+    <td>/pokemon</td>
+    <td>POST</td>
+  </tr>
+  <tr>
+    <td>/pokemon/$(id)</td>
+    <td>GET</td>
+  </tr>
+  <tr>
+    <td>/pokemon/$(id)</td>
+    <td>PUT</td>
+  </tr>
+  <tr>
+    <td>/pokemon/$(id)</td>
+    <td>DELETE</td>
+  </tr>
+</table>
+
+
+<br>
+<h2 id= "tools"><strong>Tools and Technologies</strong></h2>
+
+* [Mongoose](https://mongoose.ws/documentation/) as a network library to accept http request
+
+* [Mysql](https://www.mysql.com/) to stored our data into a relational database
+
+* [Mysql C Lib](https://dev.mysql.com/doc/c-api/8.0/en/) to connect our C server into the database
+
+* [Docker](https://www.docker.com/) to separete our Api, Cli And Database in containers
+* [Development tools](https://www.a2hosting.com/kb/developer-corner/testing-and-development/installing-development-tools-on-an-unmanaged-server) such as git, gcc and make
+
+* [Organization Tools](https://www.a2hosting.com/kb/developer-corner/testing-and-development/installing-development-tools-on-an-unmanaged-server) 
+
+* *  [Whimsical](https://whimsical.com/fluxograma-UMDgypwLJykZyjAaKEtaSw) a Web Application to make fluxograma
+
+* *  [Monday](https://celebro-company.monday.com/boards/2325319253) To plan priorities
+
+* * ![](/img/monday.png)
+
+* *  [Notion](https://rust-politician-f9e.notion.site/459a97270f194a3d87020351736f1dfa?v=81110b2cb5ef41e0a13a113bcf952686) To organize what and when to study a subject
+
+* Tools to test our api
+
+* *  [Postman](https://www.postman.com/)
+
+* *  [Thunderclient](https://www.thunderclient.com/)
+
+* *  [RestClient](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
+<br>
+<h2 id = "docker"><strong>Docker and Server instalation</strong></h2>
+
+> The image is privated but in the future i wish to lauch it.
+
+> Make sure you have [Docker](https://docs.docker.com/engine/) installed in your environment
+
+> I'm not using docker-composer since this was a one week project, but i will implement it in the next project
+
+<h3><strong>Building Server</strong></h3>
 
 <hr>
 
-<h2>Tools Used</h2>
+* If you have ```make``` installed you can run ```make init_server``` to set the environment with docker.
+
+<hr>
+
+* In case you dont have ```make``` execute the follow commands:
+
+* Images needed:
+
+* ```
+  docker pull mysql
+  docker pull ubuntu
+  docker pull debian
+* Volumes: 
+
+* ```
+    docker volume create --name Logs
+	docker volume create --name Database-volume
+* Build:
+* ```
+  	docker build -t api ./Api
+	  docker build -t cli ./Cli
+  	docker build -t my_sql ./Database
+* Network:
+
+* ```
+  docker network create database_network
+* Run:
+* ```
+    docker run -d --network database_network -v Database-volume:/var/lib/mysql --name=mysql_container my_sql
+	docker run -ti -d --name=api_container -p 8000:8000 -v Logs:/Logs api
+	docker network connect database_network api_container
+	docker run -ti -d --name=cli_container --volumes-from api_container cli
+* Now the Api server is up and can be accessed throught localhost:8000
+* You can use docker commands to manage the containers
+
+<h2 id="simple"><strong> Simple Commands </strong></h2>
+
+* ```
+  docker stop [container]
+  docker start [container]
+  docker exec -ti cli_container /Cli/cli #open cli and navegate throught the logs
+<h2 id = "flux"> <strong>Api Fluxograma</strong></h2>
+
+![](./img/Api_fluxograma.png)
+
 <br>
-<ul>
-  <li><a href="https://whimsical.com/fluxograma-UMDgypwLJykZyjAaKEtaSw">Whimsical</a> to make a fluxograma</li>
-  <br>
-  <img src=".//img/api.png" alt="">
-  <br>
-  <br>
-  <li><a href="https://celebro-company.monday.com/boards/2325319253">Monday</a> to make a list of things that I have to do on the project</li>
-  <br>
-  <img src=".//img/api_2.png" alt="">
-  <br>
-  <br>
-  <li><a href="#">Notion</a> Node to organize subjects that I have to study</li>
-  <br>
-  <img src=".//img/api_3.png" alt="">
-</ul>
+<h2> <strong>Cli Fluxograma</strong></h2>
+
+![](./img/Cli_fluxograma.png)
+
+<br>
+
+<h2 id = "doc"><strong> Documentation</strong></h2>
+
+> **Host**/**Endpoint**
+
+> Considere localhost:800 as the <strong>Host</strong>
+* ![](https://img.shields.io/static/v1?label=&message=GET&color=blue) http://localhost:8000/
+
+* * ```
+    Brief: Initial page
+    Response:
+      status 200
+      json with welcome message
+* ![](https://img.shields.io/static/v1?label=&message=GET&color=blue) http://localhost:8000/pokemon
+
+* * ```
+    Brief: Returns in json all the pokemons stored into the database
+    Response:(json)
+    [
+      {
+        "name": "Bulbasaur",
+        "type": "Grass"
+      },
+       {
+        "name": "Charmeleon",
+        "type": "Fire"
+      },
+      {
+        "name": "Blastoise",
+        "type": "Water"
+      }
+      ...
+      ...
+      ...
+    ]
+* ![](https://img.shields.io/static/v1?label=&message=GET&color=blue) http://localhost:8000/pokemon/1
+* * ```
+    Brief: Return a json array with the pokemon of id
+    Response:(json)
+    [
+      {
+        "name": "Bulbasaur",
+        "type": "Grass"
+      }
+    ]
+* ![](https://img.shields.io/static/v1?label=&message=POST&color=green) http://localhost:8000/pokemon
+* * ```
+      Brief: Create a new pokemon into the database
+    
+      Request:(json)
+      {
+        "name": "my_new_pokemon",
+        "type": "my_type"
+      }
+      Response:
+          status 202 in success
+          status 500 or 400 in case of error
+* ![](https://img.shields.io/static/v1?label=&message=PUT&color=yellow) http://localhost:8000/pokemon/1
+* * ```
+      Brief: Update a pokemon of id with new values
+    
+      Request:(json)
+      {
+        "name": "my_new_pokemon",
+        "type": "my_type"
+      }
+      Response:
+         status 200 in success
+         status 500 in case of error
+* ![](https://img.shields.io/static/v1?label=&message=DELETE&color=red) http://localhost:8000/pokemon/1
+* * ```
+      Brief: Delete pokemon of id
+      Response:
+         status 200 in success
+         status 500 in case of error
+<br>
+<hr>
+<h2 id="collab">Collaborators</h2>
+<hr>
+
+* Gabriel (gsilva-v)
+* Leonardo (lfilipe-)
+<hr>
+<h2 id="bio"><strong>Bibliography</strong></h2>
+<hr>
+
+ [Notion](https://rust-politician-f9e.notion.site/459a97270f194a3d87020351736f1dfa?v=81110b2cb5ef41e0a13a113bcf952686) Most part of the links used is inside notion
