@@ -1,2 +1,3 @@
-/etc/init.d/mysql start
+make db
+make
 /Api/server

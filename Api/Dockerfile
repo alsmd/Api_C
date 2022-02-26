@@ -3,16 +3,18 @@ FROM ubuntu
 
 
 #copia todos os arquivos da pasta atual dentro da pasta ./home dentro do container
-ADD . ./Api
+ADD . /Api
+
+WORKDIR	/Api 
 
 #Install packages
 RUN apt-get -y update
 
-RUN apt-get -y install expect
+#RUN apt-get -y install expect
 
-RUN expect -f ./Api/instalation
+#RUN expect -f ./instalation
 
-RUN /etc/init.d/mysql start && mysql < /Api/Src/Database/init.sql
+#RUN /etc/init.d/mysql start && mysql < ./Src/Database/init.sql
 
 RUN apt-get -y install default-libmysqlclient-dev
 
@@ -24,10 +26,7 @@ RUN apt-get -y install make
 
 RUN apt-get install net-tools
 
-RUN make -C /Api
-
-RUN /etc/init.d/mysql start && make db -C /Api
-#EXPOSE 8000
+EXPOSE 8000
 
 #executa ao startar
-#CMD [ "/Api/server"]
+CMD [ "bash", "./init.sh"]

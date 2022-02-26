@@ -6,9 +6,9 @@
 #include <utils.h>
 
 //Config
-#define HOST "localhost"
-#define USER "flda-sil"
-#define PASS "pa$$word123."
+#define HOST "mysql_container"
+#define USER "root"
+#define PASS ""
 #define DBNAME "api"
 #define PORT 3306
 #define UNIX_SOCKET (void *)0
