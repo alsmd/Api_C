@@ -75,7 +75,7 @@ void    add_log(char *method, char *route, int status, const char *header)
 {
 	time_t	curtime;
 	char	*str_time;
-	FILE	*file_log = fopen("../Logs/log", "a");
+	FILE	*file_log = fopen("/Logs/log", "a");
 
 	time(&curtime);
 	if (file_log != NULL)

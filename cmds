@@ -1,0 +1,7 @@
+docker volume create --name DataVolume1
+
+docker build -t api ./Api
+
+docker build -t cli ./Cli
+
+docker run -ti --name=Container1 -v DataVolume1:/datavolume1 ubuntu

@@ -8,8 +8,8 @@
 //Config
 #define HOST "localhost"
 #define USER "flda-sil"
-#define PASS "123"
-#define DBNAME "teste"
+#define PASS "pa$$word123."
+#define DBNAME "api"
 #define PORT 3306
 #define UNIX_SOCKET (void *)0
 #define FLAG 0

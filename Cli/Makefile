@@ -32,15 +32,13 @@ CFLAGS = -g -Wall -Werror -Wextra
 
 HEADER = ./Include -I/usr/local/mysql/include -I$(JS_LIB_DIR)Include
 
-MYSQL_LIB = -L/usr/local/mysql/lib -lmysqlclient
-
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(HEADER) -c -o $@ $< $(MYSQL_LIB)
+	$(CC) $(CFLAGS) -I$(HEADER) -c -o $@ $<
 
 $(NAME): $(JS_LIB_DIR)$(JS_NAME) $(OBJS)
-	$(CC) $(CFLAGS) -I$(HEADER) -o $(NAME) $(OBJS) $(MYSQL_LIB) -L$(JS_LIB_DIR) -ljs
+	$(CC) $(CFLAGS) -I$(HEADER) -o $(NAME) $(OBJS) -L$(JS_LIB_DIR) -ljs
 
 $(JS_LIB_DIR)$(JS_NAME):
 	make -C $(JS_LIB_DIR)

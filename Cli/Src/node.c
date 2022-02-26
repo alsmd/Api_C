@@ -90,7 +90,7 @@ void	set_sizes()
 void	create_nodes()
 {
 	char	buffer[2048];
-	FILE	*log = fopen("../Logs/log", "r");
+	FILE	*log = fopen("/Logs/log", "r");
 	
 	if (log)
 	{

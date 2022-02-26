@@ -1,0 +1,4 @@
+#!/usr/bin/expect
+set timeout 360
+spawn apt-get -y install mysql-server
+expect "Geographic area: " { send 2\r\n134\r\n22 }
