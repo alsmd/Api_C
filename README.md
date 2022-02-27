@@ -123,6 +123,7 @@ This is a one week project where the objective is to create a Rest Api and a Cli
     docker run --network database_network -v Database-volume:/var/lib/mysql --name=mysql_container my_sql #wait set up then close the terminal and open again, or use -d flag and wait a minute to give time to the database start
     docker run -ti -d  --network database_network --name=api_container -p 8000:8000 -v Logs:/Logs api
 * Now the Api server is up and can be accessed throught localhost:8000
+* try access localhost:8000/pokemon as a test. If the container connection stop it means the mysql doesn't finish its set up, just run ```docker start api_container``` again and the application will work normally
 * You can use docker commands to manage the containers
 
 
