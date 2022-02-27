@@ -10,21 +10,19 @@ void	reset_sys()
 	sys.cursor = 0;
 }
 
-void	init(int item_per_table)
+void	init()
 {
 	bzero(&sys, sizeof(t_sys));
 	create_nodes();
-	sys.item_per_table = item_per_table;
-	if (sys.item_per_table == 0)
-		sys.item_per_table = 3;
+	sys.item_per_table = 6;
 	reset_sys();
 	sys.default_color = WHITE;
 	sys.screen = "table";
 }
 
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	init(atoi(argv[1]));
+	init();
 	run();
 	return (0);
 }
