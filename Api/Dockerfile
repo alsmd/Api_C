@@ -10,21 +10,9 @@ WORKDIR	/Api
 #Install packages
 RUN apt-get -y update
 
-#RUN apt-get -y install expect
-
-#RUN expect -f ./instalation
-
-#RUN /etc/init.d/mysql start && mysql < ./Src/Database/init.sql
-
-RUN apt-get -y install default-libmysqlclient-dev
-
-RUN apt-get -y install vim
-
-RUN apt-get -y install gcc
-
-RUN apt-get -y install make
-
-RUN apt-get install net-tools
+RUN apt-get -y install default-libmysqlclient-dev && \
+	apt-get -y install vim && apt-get -y install libcurl4-openssl-dev \
+	&& apt-get -y install gcc && apt-get -y install make && apt-get -y install net-tools
 
 EXPOSE 8000
 
