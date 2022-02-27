@@ -1,44 +1,20 @@
-//success
-GET http://www.localhost:8000 HTTP/1.1 
-content-type: application/json
+///
 
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
+//      CRUD
+
+///
+
+// GET CONTENT
+GET http://www.localhost:8000 HTTP/1.1 
 
 ###
 
-//Success
+// GET CONTENT FROM DATABASE
 GET http://www.localhost:8000/pokemon HTTP/1.1
 content-type: application/json
 
-{
-}
-
 ###
-//error
-POST http://www.localhost:8000/pokemon HTTP/1.1
-content-type: application/json
-
-{
-    
-}
-
-###
-//error
-POST http://www.localhost:8000/pokemon HTTP/1.1
-content-type: application/json
-
-{
-    "asd":"wrong format"
-    asd,
-    ,,asd
-
-}
-
-###
-//successs
+// TRY TO CREATE A REGISTER IN DATABASE
 POST http://www.localhost:8000/pokemon HTTP/1.1
 content-type: application/json
 
@@ -47,51 +23,41 @@ content-type: application/json
     "type": "Developer",
     "gen": 1
 }
-
 ###
-//success
-GET http://www.localhost:8000/pokemon/1 HTTP/1.1
+// TRY TO CREATE A NEW REGISTER INTO THE DATABASE WITHOUT SEND ANY DATA
+// IT WILL RETURN ERROR
+POST http://www.localhost:8000/pokemon HTTP/1.1
 content-type: application/json
-
 {
 }
-
 ###
-//success
+//  TRY UPDATE A REGISTER FROM THE DATABASE
 PUT http://www.localhost:8000/pokemon/1 HTTP/1.1
 content-type: application/json
-
 {
     "name": "Gabriel",
     "gen": 10
 }
-
 ###
-//success
-GET http://www.localhost:8000/pokemon/1 HTTP/1.1
+//  TRY UPDATE A REGISTER PASSING A WRONG JSON
+//  RETURNS AN ERROR
+PUT http://www.localhost:8000/pokemon/1 HTTP/1.1
 content-type: application/json
 
 {
+    "asd":"wrong format"
+    asd,
+    ,,asd
 }
 
 ###
-
-DELETE http://www.localhost:8000/pokemon/1 HTTP/1.1
-content-type: application/json
-
-{
-}
-###
-
+// TRY TO DELETE A REGISTER FROM THE DATABASE
 GET  http://www.localhost:8000/pokemon/1 HTTP/1.1
 content-type: application/json
-
 {
 }
-
 ###
-
-//error
+// WRONG JSON FORMAT
 PUT http://www.localhost:8000/pokemon/1 HTTP/1.1
 content-type: application/json
 
