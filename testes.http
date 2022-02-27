@@ -1,5 +1,5 @@
 //success
-GET http://www.localhost:8000 HTTP/1.1 
+GET http://35.199.94.103 HTTP/1.1 
 content-type: application/json
 
 {
@@ -10,7 +10,7 @@ content-type: application/json
 ###
 
 //Success
-GET http://www.localhost:8000/pokemon HTTP/1.1
+GET http://35.199.94.103/pokemon HTTP/1.1
 content-type: application/json
 
 {
@@ -18,7 +18,7 @@ content-type: application/json
 
 ###
 //error
-POST http://www.localhost:8000/pokemon HTTP/1.1
+POST http://35.199.94.103/pokemon HTTP/1.1
 content-type: application/json
 
 {
@@ -27,7 +27,7 @@ content-type: application/json
 
 ###
 //error
-POST http://www.localhost:8000/pokemon HTTP/1.1
+POST http://35.199.94.103/pokemon HTTP/1.1
 content-type: application/json
 
 {
@@ -39,7 +39,7 @@ content-type: application/json
 
 ###
 //successs
-POST http://www.localhost:8000/pokemon HTTP/1.1
+POST http://35.199.94.103/pokemon HTTP/1.1
 content-type: application/json
 
 {
@@ -49,7 +49,7 @@ content-type: application/json
 
 ###
 //success
-GET http://www.localhost:8000/pokemon/1 HTTP/1.1
+GET http://35.199.94.103/pokemon/1 HTTP/1.1
 content-type: application/json
 
 {
@@ -57,7 +57,7 @@ content-type: application/json
 
 ###
 //success
-PUT http://www.localhost:8000/pokemon/1 HTTP/1.1
+PUT http://35.199.94.103/pokemon/1 HTTP/1.1
 content-type: application/json
 
 {
@@ -66,7 +66,7 @@ content-type: application/json
 
 ###
 //success
-GET http://www.localhost:8000/pokemon/1 HTTP/1.1
+GET http://35.199.94.103/pokemon/1 HTTP/1.1
 content-type: application/json
 
 {
@@ -74,14 +74,14 @@ content-type: application/json
 
 ###
 
-DELETE http://www.localhost:8000/pokemon/1 HTTP/1.1
+DELETE http://35.199.94.103/pokemon/1 HTTP/1.1
 content-type: application/json
 
 {
 }
 ###
 
-GET  http://www.localhost:8000/pokemon/1 HTTP/1.1
+GET  http://35.199.94.103/pokemon/1 HTTP/1.1
 content-type: application/json
 
 {
@@ -90,7 +90,7 @@ content-type: application/json
 ###
 
 //error
-PUT http://www.localhost:8000/pokemon/1 HTTP/1.1
+PUT http://35.199.94.103/pokemon/1 HTTP/1.1
 content-type: application/json
 
 {
