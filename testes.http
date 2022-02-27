@@ -1,0 +1,104 @@
+//success
+GET http://www.localhost:8000 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+
+//Success
+GET http://www.localhost:8000/pokemon HTTP/1.1
+content-type: application/json
+
+{
+}
+
+###
+//error
+POST http://www.localhost:8000/pokemon HTTP/1.1
+content-type: application/json
+
+{
+    
+}
+
+###
+//error
+POST http://www.localhost:8000/pokemon HTTP/1.1
+content-type: application/json
+
+{
+    "asd":"wrong format"
+    asd,
+    ,,asd
+
+}
+
+###
+//successs
+POST http://www.localhost:8000/pokemon HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Flavio",
+    "type": "Developer"
+}
+
+###
+//success
+GET http://www.localhost:8000/pokemon/1 HTTP/1.1
+content-type: application/json
+
+{
+}
+
+###
+//success
+PUT http://www.localhost:8000/pokemon/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Gabriel"
+}
+
+###
+//success
+GET http://www.localhost:8000/pokemon/1 HTTP/1.1
+content-type: application/json
+
+{
+}
+
+###
+
+DELETE http://www.localhost:8000/pokemon/1 HTTP/1.1
+content-type: application/json
+
+{
+}
+###
+
+GET  http://www.localhost:8000/pokemon/1 HTTP/1.1
+content-type: application/json
+
+{
+}
+
+###
+
+//error
+PUT http://www.localhost:8000/pokemon/1 HTTP/1.1
+content-type: application/json
+
+{
+
+
+
+
+
+
+              "a":1
+}

@@ -41,7 +41,7 @@ DB_OBJS = $(DB_SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS = 
+CFLAGS = -g
 
 HEADER = ./Include -I/usr/local/mysql/include -I$(JS_LIB_DIR)Include
 

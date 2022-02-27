@@ -48,8 +48,7 @@ void	store_pokemon(struct mg_connection *c, struct mg_http_message *request)
 	int			status;
 
 	json = (char *) request->body.ptr;
-	js_new_obj(json, &poke);
-	if (js_get_value(poke.obj_value, "name") == 0 || js_get_value(poke.obj_value, "type") == 0)
+	if (js_new_obj(json, &poke) == 0 || js_get_value(poke.obj_value, "name") == 0 || js_get_value(poke.obj_value, "type") == 0)
 		status = mg_http_reply(c, HTTP_BAD_REQUEST, "", "{\"status:\":\"%d\",\"message\":\"%s\"}", HTTP_BAD_REQUEST, "Pokemon's name and type is needed when creating  a pokemon.");
 	else
 	{
@@ -60,12 +59,12 @@ void	store_pokemon(struct mg_connection *c, struct mg_http_message *request)
 			status = mg_http_reply(c, HTTP_INTERNAL_ERROR, "", "{\"status:\":\"%d\",\"message\":\"%s\"}", HTTP_INTERNAL_ERROR, "Something went wrong when creating pokemon");
 		else
 			status = mg_http_reply(c, HTTP_CREATED, "", "{\"status:\":\"%d\"}", HTTP_CREATED);
+		js_clean_obj(poke.obj_value);
 	}
 	add_log("POST", "/pokemon", status, request->head.ptr);
-	js_clean_obj(poke.obj_value);
 }
 
-void	get_new_attrs(js_node *poke, char *new_attrs)
+int	get_new_attrs(js_node *poke, char *new_attrs)
 {
 	js_node	*name;
 	js_node	*type;
@@ -73,6 +72,8 @@ void	get_new_attrs(js_node *poke, char *new_attrs)
 
 	name = js_get_value(poke, "name");
 	type = js_get_value(poke, "type");
+	if (!name && !type)
+		return (1);
 	if (name)
 		sprintf(new_attrs, "name = '%s'", name->string_value);
 	if (type)
@@ -82,6 +83,7 @@ void	get_new_attrs(js_node *poke, char *new_attrs)
 			strcat(new_attrs, ",");
 		strcat(new_attrs, tmp);
 	}
+	return (0);
 }
 
 void	update_pokemon(struct mg_connection *c, struct mg_http_message *request)
@@ -96,16 +98,19 @@ void	update_pokemon(struct mg_connection *c, struct mg_http_message *request)
 	bzero(new_attrs, 1024);
 	id = atoi(&request->uri.ptr[9]);
  	sprintf(statement, "id=%d",id);
-	js_new_obj((char *)request->body.ptr, &poke);
-	get_new_attrs(poke.obj_value, new_attrs);
-	if (update_row("pokemon", new_attrs, statement))
-		status = mg_http_reply(c, HTTP_INTERNAL_ERROR, "", "{\"status:\":\"%d\",\"message\":\"%s\"}", HTTP_INTERNAL_ERROR, "Something went wrong when updating pokemon");
+	if (js_new_obj((char *)request->body.ptr, &poke) == 0)
+		status = mg_http_reply(c, HTTP_BAD_REQUEST, "", "{\"status:\":\"%d\",\"message\":\"%s\"}", HTTP_BAD_REQUEST, "Wrong json format!");
 	else
-		status = mg_http_reply(c, HTTP_OK, "", "{\"status:\":\"%d\"}", HTTP_OK);
+	{
+		if (get_new_attrs(poke.obj_value, new_attrs) || update_row("pokemon", new_attrs, statement))
+			status = mg_http_reply(c, HTTP_INTERNAL_ERROR, "", "{\"status:\":\"%d\",\"message\":\"%s\"}", HTTP_INTERNAL_ERROR, "Something went wrong when updating pokemon");
+		else
+			status = mg_http_reply(c, HTTP_OK, "", "{\"status:\":\"%d\"}", HTTP_OK);
+		js_clean_obj(poke.obj_value);
+	}
 	char	uri[255];
 	sprintf(uri, "/pokemon/%d", id);
 	add_log("PUT", uri, status, request->head.ptr);
-	js_clean_obj(poke.obj_value);
 }
 
 void	remove_pokemon(struct mg_connection *c, struct mg_http_message *request)

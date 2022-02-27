@@ -13,8 +13,11 @@ char	*js_new_array(char *json, js_node *obj)
 	obj->array_value = calloc(1, sizeof(js_node));
 	obj->type = JSON_ARRAY;
 	begin = obj->array_value;
+	json = jump_whitespace(json);
+	if (*json != '[')
+		return (0);
 	json += 1;
-	while (*json != ']')
+	while (*json != ']')//[           k];
 	{
 		json = jump_whitespace(json);
 		if (*json == ']')
@@ -26,9 +29,15 @@ char	*js_new_array(char *json, js_node *obj)
 			begin->next = calloc(1, sizeof(js_node));
 			begin = begin->next;
 			json = js_new_array_attr(json, begin);
+			if (json == 0)
+				return (0);
 		}
 		else
+		{
 			json = js_new_array_attr(json, begin);
+			if (json == 0)
+				return (0);
+		}
 	}
 	json++;
 	return (json);

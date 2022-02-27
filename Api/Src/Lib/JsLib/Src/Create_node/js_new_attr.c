@@ -7,11 +7,13 @@ char	*store_by_type(js_node *obj, char *json)
 		obj->type = JSON_STRING;
 		obj->string_value = js_new_string(json);
 		json++;
-		while (*json != '"')
+		while (*json != '"' && *json)
 			json++;
+		if (*json == 0)
+			return (0);
 		json++;
 	}
-	if (*json == '[')
+	else if (*json == '[')
 		json = js_new_array(json, obj);
 	else if (*json == '{')
 		json = js_new_obj(json, obj);
@@ -39,7 +41,11 @@ char	*store_by_type(js_node *obj, char *json)
 		obj->int_value = atoi(json);
 		while (is_number(*json))
 			json++;
+		if (json == 0)
+			return (0);
 	}
+	else
+		return (0);
 	return (json);
 }
 
@@ -50,12 +56,16 @@ char	*store_by_type(js_node *obj, char *json)
 */
 char	*js_new_obj_attr(char *json, js_node *obj)
 {
-	json++;
+	json++;//{      ""}
 	obj->key = strndup(json, strlen_var(json, '"'));
-	while (*json != ':')
+	while (*json != ':' && *json)
 		json++;
+	if (*json == 0)
+		return (0);
 	json++;
 	json = jump_whitespace(json);
+	if (*json == 0)
+		return (0);
 	json = store_by_type(obj, json);
 	return (json);
 }

@@ -9,13 +9,18 @@ void	printf_array_items(js_node *item)
 }
 
 //Teste
-
+/*
+{"name": "Joe", "age": null, } - Extra comma (,) in object
+{"name": "Joe", , "age": null} - Extra comma (,) in object
+{"name": "Joe", "age": null] - Closing bracket is wrong
+{"name": "Joe", "age": } - Missing value in name value pair in object
+{"name": "Joe", "age" } - Missing : after name in object
+{{}} - Missing name in object
+*/
 int	main(void)
 {
 	js_node	obj;
 	
-	js_new_array("[1, 2, \"Hello there!\", 4, true, false]", &obj);
-	js_foreach(&obj, printf_array_items);
-	free(obj.array_value);
+	printf("%p\n", js_new_obj("{asdasdqasd}", &obj));
 	return (0);
 }
