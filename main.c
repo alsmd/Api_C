@@ -10,6 +10,7 @@ int	function_pt(void *ptr, size_t size, size_t nmemb, void *stream){
     printf("%s\n", (char *) ptr);
 }
 
+
 int main(void)
 {
     CURL    *curl;
