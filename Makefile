@@ -36,4 +36,5 @@ reset_server:
 	docker rm -f mysql_container
 	docker rm -f cli_container
 	rm -f $(watch_dir).pull_depen $(watch_dir).create_volum $(watch_dir).build $(watch_dir).network $(watch_dir).run
+	rmdir $(watch)
 	docker network remove database_network
