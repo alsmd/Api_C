@@ -21,8 +21,10 @@ int	create_database(void)
 
 	init_con(&con);
 	create_tables(con);
-	//sed_database(con);
 	mysql_close(con);
 	mysql_library_end();
+	char	*json = read_row("pokemon", "id", 0);
+	if (!strcmp(json, "[]"))
+		seed_database();
 	return (0);
 }

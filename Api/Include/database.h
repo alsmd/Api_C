@@ -4,6 +4,12 @@
 #include <mysql/mysql.h>
 #include <stdio.h>
 #include <utils.h>
+#include <curl/curl.h>
+#include <js_lib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 //Config
 #define HOST "mysql_container"
@@ -60,8 +66,9 @@ int		delete_row(char *table, char *statement);
 int		create_database(void);
 
 /*
-	@brief	Sed databases with data
+	@brief	Seed databases with data
 */
-int		sed_database(MYSQL *con);
+int		seed_database();
+
 
 #endif
