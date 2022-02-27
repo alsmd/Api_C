@@ -122,10 +122,11 @@ This is a one week project where the objective is to create a Rest Api and a Cli
   docker network create database_network
 * Run:
 * ```
-    docker run --network database_network -v Database-volume:/var/lib/mysql --name=mysql_container my_sql #wait set up then close the terminal and open again, or use -d flag and wait a minute to give time to the database start
+    docker run --network database_network -v Database-volume:/var/lib/mysql --name=mysql_container my_sql #wait set up then close the terminal and open again, or use -d flag and wait a minute to give it time to start the database
     docker run -ti -d  --network database_network --name=api_container -p 8000:8000 -v Logs:/Logs api
+    #in the first time we set up api_container it can take 1 to 2 minutes since it will seed our database with some data from the Api https://pokeapi.co/ . Remove -d flag to see the proccess
 * Now the Api server is up and can be accessed throught localhost:8000
-* try access localhost:8000/pokemon as a test. If the container connection stop it means the mysql doesn't finish its set up, just run ```docker start api_container``` again and the application will work normally
+* Try access localhost:8000/pokemon as a test. If the container connection stop it means the mysql doesn't finish its set up, just run ```docker start api_container``` again and the application will work normally
 * You can use docker commands to manage the containers
 
 
@@ -165,14 +166,20 @@ This is a one week project where the objective is to create a Rest Api and a Cli
     Response:(json)
     [
       {
+        "id": 1,
+        "gen": 1,
         "name": "Bulbasaur",
         "type": "Grass"
       },
        {
+        "id": 2,
+        "gen": 1,
         "name": "Charmeleon",
         "type": "Fire"
       },
       {
+        "id": 3,
+        "gen": 1,
         "name": "Blastoise",
         "type": "Water"
       }
@@ -182,10 +189,13 @@ This is a one week project where the objective is to create a Rest Api and a Cli
     ]
 * ![](https://img.shields.io/static/v1?label=&message=GET&color=blue) http://localhost:8000/pokemon/1
 * * ```
-    Brief: Return a json array with the pokemon of id
+    Brief: Return a json array with the pokemon of the passed id,
+    or status 404 if this pokemon doesn't exist in our database
     Response:(json)
     [
       {
+        "id" : 1,
+        "gen": 1,
         "name": "Bulbasaur",
         "type": "Grass"
       }
@@ -197,7 +207,8 @@ This is a one week project where the objective is to create a Rest Api and a Cli
       Request:(json)
       {
         "name": "my_new_pokemon",
-        "type": "my_type"
+        "type": "my_type",
+        "gen": 3
       }
       Response:
           status 202 in success
@@ -209,7 +220,8 @@ This is a one week project where the objective is to create a Rest Api and a Cli
       Request:(json)
       {
         "name": "my_new_pokemon",
-        "type": "my_type"
+        "type": "my_type",
+        "gen": 1
       }
       Response:
          status 200 in success
