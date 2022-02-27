@@ -38,7 +38,7 @@ int	main(void)
 	char            *ip;
 
 	ip = get_ip();
-	sprintf(address, "%d:8000", ip);
+	sprintf(address, "%s:8000", ip);
 	signal(SIGINT, logout);
 	mg_mgr_init(&mongoose);
 	mg_http_listen(&mongoose, address, handle_request, &mongoose);
