@@ -98,14 +98,6 @@ This is a one week project where the objective is to create a Rest Api and a Cli
 
 <h3><strong>Building Server</strong></h3>
 
-<hr>
-
-* If you have ```make``` installed you can run ```make init_server``` to set the environment with docker.
-
-<hr>
-
-* In case you dont have ```make``` execute the follow commands:
-
 * Images needed:
 
 * ```
@@ -116,7 +108,7 @@ This is a one week project where the objective is to create a Rest Api and a Cli
 
 * ```
     docker volume create --name Logs
-	docker volume create --name Database-volume
+    docker volume create --name Database-volume
 * Build:
 * ```
   	docker build -t api ./Api
@@ -128,19 +120,18 @@ This is a one week project where the objective is to create a Rest Api and a Cli
   docker network create database_network
 * Run:
 * ```
-    docker run -d --network database_network -v Database-volume:/var/lib/mysql --name=mysql_container my_sql
-	docker run -ti -d --name=api_container -p 8000:8000 -v Logs:/Logs api
-	docker network connect database_network api_container
-	docker run -ti -d --name=cli_container --volumes-from api_container cli
+    docker run --network database_network -v Database-volume:/var/lib/mysql --name=mysql_container my_sql #wait set up then close the terminal and open again, or use -d flag and wait a minute to give time to the database start
+    docker run -ti -d  --network database_network --name=api_container -p 8000:8000 -v Logs:/Logs api
 * Now the Api server is up and can be accessed throught localhost:8000
 * You can use docker commands to manage the containers
+
 
 <h2 id="simple"><strong> Simple Commands </strong></h2>
 
 * ```
   docker stop [container]
   docker start [container]
-  docker exec -ti cli_container /Cli/cli #open cli and navegate throught the logs
+  docker run -ti --rm --volumes-from api_container cli#open cli and navegate throught the logs
 <h2 id = "flux"> <strong>Api Fluxograma</strong></h2>
 
 ![](./img/Api_fluxograma.png)
@@ -227,6 +218,30 @@ This is a one week project where the objective is to create a Rest Api and a Cli
          status 200 in success
          status 500 in case of error
 <br>
+<h2><strong>Cli Documentation</strong></h2>
+
+> Cli provides 3 interfaces
+
+1. Total Requests
+
+![](/img/total_request.png)
+
+2. Show all Requests of a pair Method Uri
+
+![](/img/same_request.png)
+
+3. Show information about an specific request
+
+![](/img/specific_request.png)
+
+* You can press [space] to see the menu helper
+* Navegate throught the table using w/s or up down
+* Select an item with [enter]
+* [backspace] to return to the previous page
+* [q] to exit the application
+
+<br>
+
 <hr>
 <h2 id="collab">Collaborators</h2>
 <hr>
