@@ -4,6 +4,7 @@ $(watch_dir).pull_depen:
 	docker pull mysql
 	docker pull ubuntu
 	docker pull debian
+	mkdir $(watch_dir)
 	touch $(watch_dir).pull_depen
 
 $(watch_dir).create_volum:
