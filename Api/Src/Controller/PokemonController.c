@@ -24,7 +24,7 @@ void	show_pokemon(struct mg_connection *c, struct mg_http_message *request)
 	int		status;
 
 	id = atoi(&request->uri.ptr[9]);
- 	sprintf(statement, "id=%d",id);
+ 	sprintf(statement, "id=%d", id);
 	json_response = read_row("pokemon", "id,name,type", statement);
 	if (json_response == NULL)
 		status = mg_http_reply(c, HTTP_INTERNAL_ERROR, "", "{\"status:\":\"%d\",\"message\":\"%s\"}", HTTP_INTERNAL_ERROR, "Something went wrong when reading pokemon's table");
@@ -91,7 +91,6 @@ void	update_pokemon(struct mg_connection *c, struct mg_http_message *request)
 	char		statement[600];
 	js_node		poke;
 	char		new_attrs[1024];
-	char		*json_obj;
 	int			id;
 	int			status;
 

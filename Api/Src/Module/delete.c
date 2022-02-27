@@ -16,5 +16,6 @@ int	delete_row(char *table, char *statement)
 		return (1);
 	}
 	mysql_close(con);
+	mysql_library_end();
 	return (0);
 }

@@ -95,4 +95,5 @@ int	main(void)
 	printf("Simple delete tests: \n\n");
 	simple_delete();
 	printf("_________\n");
+	return (0);
 }

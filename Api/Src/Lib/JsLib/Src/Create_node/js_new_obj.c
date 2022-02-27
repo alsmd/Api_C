@@ -1,5 +1,11 @@
 #include <js_lib.h>
 
+static char	*free_obj(js_node *obj)
+{
+	js_clean_obj(obj);
+	return (0);
+}
+
 /*
 	@brief		Receive a string json and convert to a js_node, you can use search function in this obj to get the attributes
 	@param		json (json string that will be the base for the new js_node, it has to point to "{")
@@ -16,11 +22,11 @@ char	*js_new_obj(char *json, js_node *obj)
 	begin = obj->obj_value;
 	json = jump_whitespace(json);
 	if (*json != '{')
-		return (0);
+		return (free_obj(obj->obj_value));
 	json += 1;
 	json = jump_whitespace(json);
 	if (json[0] == '}')
-		return (0);
+		return (free_obj(obj->obj_value));
 	while (*json != '}')
 	{
 		json = jump_whitespace(json);
@@ -31,21 +37,21 @@ char	*js_new_obj(char *json, js_node *obj)
 			json++;
 			json = jump_whitespace(json);
 			if (*json != '"')
-				return (0);
+				return (free_obj(obj->obj_value));
 			begin->next = calloc(1, sizeof(js_node));
 			begin = begin->next;
 			json = js_new_obj_attr(json, begin);
 			if (json == 0)
-				return (0);
+				return (free_obj(obj->obj_value));
 		}
 		else if (*json == '"')
 		{
 			json = js_new_obj_attr(json, begin);
 			if (json == 0)
-				return (0);
+				return (free_obj(obj->obj_value));
 		}
 		else
-			return (0);
+			return (free_obj(obj->obj_value));
 	}
 	json++;
 	return (json);

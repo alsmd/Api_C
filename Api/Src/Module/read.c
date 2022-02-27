@@ -34,7 +34,7 @@ static char	*get_properties(MYSQL_ROW row, int num_fields, char *fields, int *ty
 		keys += 1;
 		first = 0;
 	}
-	free(tmp);
+	free_matriz(tmp);
 	return (buffer);
 }
 
@@ -60,6 +60,7 @@ static char	*get_json_result(MYSQL *con, char *fields)
 	int		first[2];
 	char	*buffer;
 	int		*types;
+
 	first[0] = 1;
 	buffer = strdup("[");
 	MYSQL_RES *result = mysql_store_result(con);
@@ -71,10 +72,13 @@ static char	*get_json_result(MYSQL *con, char *fields)
 		if (!first[0])
 			buffer = strjoin(buffer, ", ");
 		buffer = strjoin(buffer, "{");
-		buffer = strjoin(buffer, get_properties(row, num_fields, fields, types));
+		char	*properties = get_properties(row, num_fields, fields, types);
+		buffer = strjoin(buffer, properties);
+		free(properties);
 		first[0] = 0;
 		buffer = strjoin(buffer, "}");
 	}
+	free(types);
 	buffer = strjoin(buffer, "]");
 	mysql_free_result(result);
 	return (buffer);
@@ -102,5 +106,6 @@ char	*read_row(char *table, char *fields,  char *statement)
 		return (NULL);
 	}
 	mysql_close(con);
+	mysql_library_end();
 	return (result);
 }

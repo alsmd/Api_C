@@ -16,5 +16,6 @@ int	create_row(char *table, char *keys, char *values)
 		return (1);
 	}
 	mysql_close(con);
+	mysql_library_end();
 	return (0);
 }

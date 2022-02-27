@@ -16,7 +16,6 @@ int	update_row(char *table, char *new_attrs, char *statement)
 		return (1);
 	}
 	mysql_close(con);
+	mysql_library_end();
 	return (0);
 }
-
-//UPDATE pokemon SET name = new_name, type = new_type WHERE id = 5

@@ -12,6 +12,7 @@ int		create_tables(MYSQL *con)
 		printf("Error::create_database");
 		exit(1);
 	}
+	return (0);
 }
 
 int	create_database(void)
@@ -22,4 +23,6 @@ int	create_database(void)
 	create_tables(con);
 	//sed_database(con);
 	mysql_close(con);
+	mysql_library_end();
+	return (0);
 }

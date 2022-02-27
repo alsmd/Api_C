@@ -41,7 +41,7 @@ DB_OBJS = $(DB_SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS = -g
+CFLAGS = -g -Wall -Werror -Wextra
 
 HEADER = ./Include -I/usr/local/mysql/include -I$(JS_LIB_DIR)Include
 
@@ -75,6 +75,6 @@ db: fclean $(DB_OBJS)
 re: fclean all
 	make re -C $(JS_LIB_DIR)
 run: all
-	./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 .PHONY: clean fclean re all

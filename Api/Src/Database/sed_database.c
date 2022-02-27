@@ -10,4 +10,5 @@ int	sed_database(MYSQL *con)
 		printf("Error::sed_database.c\n");
 	if (mysql_query(con, "INSERT INTO pokemon(name, type, gen) VALUES('Caterpie', 'Bug', 1)"))
 		printf("Error::sed_database.c\n");
+	return (0);
 }
